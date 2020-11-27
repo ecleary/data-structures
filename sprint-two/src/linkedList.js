@@ -2,6 +2,7 @@ var LinkedList = function() {
   var someInstance = {};
   someInstance.head = null;
   someInstance.tail = null;
+  // Time complexity: O(1)
   someInstance.addToTail = function(value) {
     var newNode = Node(value);
     if (someInstance.head === null) {
@@ -13,6 +14,7 @@ var LinkedList = function() {
     someInstance.tail = newNode;
     return newNode;
   };
+  // Time complexity: O(1)
   someInstance.removeHead = function() {
     if (someInstance.head !== null) {
       var removedHead = someInstance.head.value;
@@ -26,6 +28,7 @@ var LinkedList = function() {
       return -1;
     }
   };
+  // Time complexity: O(n)
   someInstance.contains = function(value) {
     var nodeToCheck = someInstance.head;
     while (true) {
