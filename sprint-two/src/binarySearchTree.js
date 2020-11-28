@@ -9,6 +9,7 @@ var BinarySearchTree = function(value) {
 
 var binarySearchTreeMethods = {};
 
+// Time complexity: O(log n)
 binarySearchTreeMethods.insert = function(value) {
   if (value === this.value) {
     return -1;
@@ -24,6 +25,7 @@ binarySearchTreeMethods.insert = function(value) {
     this.right.insert(value);
   }
 };
+// Time complexity: O(log n)
 binarySearchTreeMethods.contains = function(value) {
   if (value === this.value) {
     return true;
@@ -42,6 +44,7 @@ binarySearchTreeMethods.contains = function(value) {
     }
   }
 };
+// Time complexity: O(n)
 binarySearchTreeMethods.depthFirstLog = function(callback) {
   callback(this.value);
   if (this.left !== null) {
