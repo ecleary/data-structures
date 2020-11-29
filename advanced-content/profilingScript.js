@@ -37,6 +37,12 @@ var generateStacks = function(n, x) {
     }
     outerStack.push(innerStack);
   }
+  for (var k = n - 1; k >= 0; k--) {
+    for (var l = x - 1; l >= 0; l--) {
+      outerStack.storage[k].pop();
+    }
+    outerStack.pop();
+  }
   return outerStack;
 };
 
@@ -49,8 +55,14 @@ var generateQueues = function(n, x) {
     }
     outerQueue.enqueue(innerQueue);
   }
+  for (var k = 0; k < n; k++) {
+    for (var l = 0; l < x; l++) {
+      outerQueue.storage[k].dequeue();
+    }
+    outerQueue.dequeue();
+  }
   return outerQueue;
 };
 
-var bigStacks = generateStacks(1200, 1200);
-var bigQueues = generateQueues(1200, 1200);
+var bigStacks = generateStacks(1000, 1000);
+var bigQueues = generateQueues(1000, 1000);
