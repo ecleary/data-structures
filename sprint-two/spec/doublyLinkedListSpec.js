@@ -33,17 +33,27 @@ describe('doublyLinkedList', function() {
   it('should remove the head from the list when removeHead is called', function() {
     doublyLinkedList.addToTail(4);
     doublyLinkedList.addToTail(5);
+    doublyLinkedList.addToTail(6);
     expect(doublyLinkedList.head.value).to.equal(4);
+    expect(doublyLinkedList.head.next.value).to.equal(5);
+    expect(doublyLinkedList.head.previous).to.equal(null);
     doublyLinkedList.removeHead();
     expect(doublyLinkedList.head.value).to.equal(5);
+    expect(doublyLinkedList.head.next.value).to.equal(6);
+    expect(doublyLinkedList.head.previous).to.equal(null);
   });
 
   it('should remove the tail from the list when removeTail is called', function() {
-    doublyLinkedList.addToTail(4);
-    doublyLinkedList.addToTail(5);
-    expect(doublyLinkedList.tail.value).to.equal(5);
-    doublyLinkedList.removeTail();
+    doublyLinkedList.addToHead(4);
+    doublyLinkedList.addToHead(5);
+    doublyLinkedList.addToHead(6);
     expect(doublyLinkedList.tail.value).to.equal(4);
+    expect(doublyLinkedList.tail.next).to.equal(null);
+    expect(doublyLinkedList.tail.previous.value).to.equal(5);
+    doublyLinkedList.removeTail();
+    expect(doublyLinkedList.tail.value).to.equal(5);
+    expect(doublyLinkedList.tail.next).to.equal(null);
+    expect(doublyLinkedList.tail.previous.value).to.equal(6);
   });
 
   it('should return the value of the former head when removeHead is called', function() {
