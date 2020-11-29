@@ -24,3 +24,5 @@ Queue.prototype.dequeue = function() {
 Queue.prototype.size = function() {
   return this.end - this.start;
 };
+
+Queue.instantiationStyle = instantiationStyle();

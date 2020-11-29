@@ -25,3 +25,5 @@ queueMethods.dequeue = function() {
 queueMethods.size = function() {
   return this.end - this.start;
 };
+
+Queue.instantiationStyle = instantiationStyle();

@@ -22,3 +22,5 @@ class Queue {
     return this.end - this.start;
   }
 }
+
+Queue.instantiationStyle = instantiationStyle();

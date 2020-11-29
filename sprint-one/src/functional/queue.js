@@ -22,3 +22,5 @@ var Queue = function() {
   };
   return someInstance;
 };
+
+Queue.instantiationStyle = instantiationStyle();

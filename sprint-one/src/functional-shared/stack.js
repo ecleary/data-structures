@@ -24,3 +24,5 @@ var stackMethods = {
     return Object.keys(this.storage).length;
   }
 };
+
+Stack.instantiationStyle = instantiationStyle();

@@ -23,3 +23,5 @@ stackMethods.pop = function() {
 stackMethods.size = function() {
   return Object.keys(this.storage).length;
 };
+
+Stack.instantiationStyle = instantiationStyle();
