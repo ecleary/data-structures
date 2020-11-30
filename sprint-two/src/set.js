@@ -27,13 +27,13 @@ var setMethods = {};
 
 // Time complexity: O(1)
 setMethods.add = function(value) {
-  this.storage.insert(value, value);
+  this.storage.insert(JSON.stringify(value), value);
 };
 // Time complexity: O(1)
 setMethods.contains = function(value) {
-  return this.storage.retrieve(value) !== undefined;
+  return this.storage.retrieve(JSON.stringify(value)) !== undefined;
 };
 // Time complexity: O(1)
 setMethods.remove = function(value) {
-  this.storage.remove(value);
+  this.storage.remove(JSON.stringify(value));
 };
