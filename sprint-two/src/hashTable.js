@@ -9,15 +9,15 @@ HashTable.prototype.insertWithoutResizing = function(key, value) {
     this._storage.set(index, []);
   }
   var bucket = this._storage.get(index);
-  var existingLevel = -1;
-  for (var level = 0; level < bucket.length; level++) {
-    if (bucket[level][0] === key) {
-      existingLevel = level;
+  var existingTuple = -1;
+  for (var tuple = 0; tuple < bucket.length; tuple++) {
+    if (bucket[tuple][0] === key) {
+      existingTuple = tuple;
       break;
     }
   }
-  if (existingLevel > -1) {
-    bucket[existingLevel] = [key, value];
+  if (existingTuple > -1) {
+    bucket[existingTuple][1] = value;
   } else {
     bucket.push([key, value]);
   }
@@ -32,9 +32,9 @@ HashTable.prototype.retrieve = function(key) {
     return undefined;
   }
   var bucket = this._storage.get(index);
-  for (var level = 0; level < bucket.length; level++) {
-    if (bucket[level][0] === key) {
-      return bucket[level][1];
+  for (var tuple = 0; tuple < bucket.length; tuple++) {
+    if (bucket[tuple][0] === key) {
+      return bucket[tuple][1];
     }
   }
   return undefined;
@@ -45,15 +45,15 @@ HashTable.prototype.remove = function(key) {
     return -1;
   }
   var bucket = this._storage.get(index);
-  var existingLevel = -1;
-  for (var level = 0; level < bucket.length; level++) {
-    if (bucket[level][0] === key) {
-      existingLevel = level;
+  var existingTuple = -1;
+  for (var tuple = 0; tuple < bucket.length; tuple++) {
+    if (bucket[tuple][0] === key) {
+      existingTuple = tuple;
       break;
     }
   }
-  if (existingLevel > -1) {
-    bucket.splice(existingLevel, 1);
+  if (existingTuple > -1) {
+    bucket.splice(existingTuple, 1);
   } else {
     return -1;
   }
@@ -83,8 +83,8 @@ HashTable.prototype.rehashTable = function(limit) {
   var staticThis = this;
   oldLimitedArray.each(function(bucket, bucketNumber, bucketCollection) {
     if (bucket) {
-      bucket.forEach(function(level, levelNumber, levelCollection) {
-        staticThis.insertWithoutResizing(level[0], level[1]);
+      bucket.forEach(function(tuple, tupleNumber, tupleCollection) {
+        staticThis.insertWithoutResizing(tuple[0], tuple[1]);
       });
     }
   });
