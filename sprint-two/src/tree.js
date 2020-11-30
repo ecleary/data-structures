@@ -37,3 +37,11 @@ treeMethods.contains = function(value) {
     return false;
   }
 };
+treeMethods.traverse = function(callback) {
+  callback(this.value);
+  if (this.children.length > 0) {
+    this.children.forEach(function(child) {
+      child.traverse(callback);
+    });
+  }
+};
