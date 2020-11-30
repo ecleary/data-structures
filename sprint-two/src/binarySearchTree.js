@@ -45,12 +45,40 @@ binarySearchTreeMethods.contains = function(value) {
   }
 };
 // Time complexity: O(n)
-binarySearchTreeMethods.depthFirstLog = function(callback) {
+binarySearchTreeMethods.depthFirstLogRecursive = function(callback) {
   callback(this.value);
   if (this.left !== null) {
     this.left.depthFirstLog(callback);
   }
   if (this.right !== null) {
     this.right.depthFirstLog(callback);
+  }
+};
+binarySearchTreeMethods.depthFirstLog = function(callback) {
+  var toBeProcessed = Stack();
+  toBeProcessed.push(this);
+  while (toBeProcessed.size() > 0) {
+    var workInProgress = toBeProcessed.pop();
+    callback(workInProgress.value);
+    if (workInProgress.right !== null) {
+      toBeProcessed.push(workInProgress.right);
+    }
+    if (workInProgress.left !== null) {
+      toBeProcessed.push(workInProgress.left);
+    }
+  }
+};
+binarySearchTreeMethods.breadthFirstLog = function(callback) {
+  var toBeProcessed = Queue();
+  toBeProcessed.enqueue(this);
+  while (toBeProcessed.size() > 0) {
+    var workInProgress = toBeProcessed.dequeue();
+    callback(workInProgress.value);
+    if (workInProgress.left !== null) {
+      toBeProcessed.enqueue(workInProgress.left);
+    }
+    if (workInProgress.right !== null) {
+      toBeProcessed.enqueue(workInProgress.right);
+    }
   }
 };
