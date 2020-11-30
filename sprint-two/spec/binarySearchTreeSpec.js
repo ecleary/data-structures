@@ -64,15 +64,26 @@ describe('binarySearchTree', function() {
     binarySearchTree.breadthFirstLog(func);
     expect(array).to.eql([5, 2, 7, 1, 3, 6, 8, 4, 9]);
   });
-});
 
-/*
-         5
-       /   \
-      /     \
-     2       7
-    / \     / \
-   1   3   6   8
-        \       \
-         4       9
-*/
+  it('should rebalance as soon as the max depth is more than twice the minimum depth"', function() {
+    binarySearchTree.insert(4);
+    expect(binarySearchTree.value).to.equal(5);
+    expect(binarySearchTree.left.value).to.equal(4);
+    binarySearchTree.insert(10);
+    expect(binarySearchTree.value).to.equal(5);
+    expect(binarySearchTree.right.value).to.equal(10);
+    binarySearchTree.insert(8);
+    expect(binarySearchTree.value).to.equal(5);
+    expect(binarySearchTree.right.left.value).to.equal(8);
+    binarySearchTree.insert(7);
+    expect(binarySearchTree.value).to.equal(5);
+    expect(binarySearchTree.right.left.left.value).to.equal(7);
+    binarySearchTree.insert(6);
+    expect(binarySearchTree.value).to.equal(7);
+    expect(binarySearchTree.left.value).to.equal(6);
+    expect(binarySearchTree.left.left.value).to.equal(5);
+    expect(binarySearchTree.left.left.left.value).to.equal(4);
+    expect(binarySearchTree.right.value).to.equal(8);
+    expect(binarySearchTree.right.right.value).to.equal(10);
+  });
+});
